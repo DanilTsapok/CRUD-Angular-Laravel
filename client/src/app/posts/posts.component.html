@@ -1,0 +1,27 @@
+<div class="table">
+
+    <div class="headerTitles">  
+          <div class="headerItem">Post</div>
+          <hr>
+          <div class="headerItem">Description</div>
+          <hr>
+          <div class="headerItem">Actions</div>
+    </div>
+    <div class="bodyTable" *ngFor="let post of posts">
+        <div class="bodyItem">
+            <div>{{post.name}}</div>
+            <div>{{post.description}}</div>
+            <div class="actions">
+                <button class="btnEdit" (click)="editPost(post.id)">Edit</button>
+                <button class="btnDelete"(click)="delete(post.id)">Delete</button>
+            </div>
+        </div>
+    </div>
+    <button class="createBtn" (click)="create()">Create Post</button>
+</div>
+<div *ngIf ="creating">
+    <app-create-form (openWindowState)="close()"></app-create-form>
+</div>
+<div *ngIf ="edit">
+    <app-editform [selectPost]="selectPost"(close)="closeEdit()"></app-editform>
+</div>
