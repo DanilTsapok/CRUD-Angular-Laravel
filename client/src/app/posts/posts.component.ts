@@ -19,7 +19,6 @@ export class PostComponent implements OnInit {
   creating = false;
 
   edit =false;
-
   selectPost!:Post;
   constructor(private postService: PostService) {}
 
@@ -51,8 +50,18 @@ export class PostComponent implements OnInit {
   }
 
   editPost(id: string | undefined){
-   this.edit = true
-   this.postService.getPost(id).subscribe((data)=>(this.selectPost=data))
+   if (id) {
+    console.log(id)
+    this.postService.getPost(id).subscribe(
+      (data) => {
+        this.selectPost = data; console.log(this.selectPost)
+        this.edit = true; 
+      },
+      (error) => {
+        console.error('Error fetching post:', error);
+      }
+    );
+  }
   }
 
   delete(id: string | undefined) {
