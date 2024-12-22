@@ -17,14 +17,12 @@ export class EditformComponent implements OnInit {
   constructor(private fb: FormBuilder, private postService: PostService) {}
 
   ngOnInit() {
-    
     if (this.selectPost) {
       this.initializeForm();
     }
   }
 
   ngOnChanges() {
-   
     if (this.selectPost) {
       this.initializeForm();
     }
